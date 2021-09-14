@@ -55,23 +55,20 @@ class User
     {
         global $mysqli;
         //return "Авторизация пользователя";
-        $email = trim(mb_strtolower($_POST['email']));
-        $pass = trim($_POST['pass']);
-
+        $email = trim(mb_strtolower($email));
+        $pass = trim($pass);
         $result = $mysqli->query("SELECT * FROM `users` WHERE `email` = '$email'");
         $result = $result->fetch_assoc();
 
-        //var_dump($result["pass"]);
-
         if (password_verify($pass, $result["pass"])) {
-            //$_SESSION['name'] = $result['name'];
-            //$_SESSION['lastname'] = $result['lastname'];
-            //$_SESSION['email'] = $result['email'];
-            //$_SESSION['id'] = $result['id'];
+            // $_SESSION['name']=$result['name'];
+            // $_SESSION['lastname']=$result['lastname'];
+            //$_SESSION['email']=$result['email'];
+            $_SESSION['id'] = $result['id'];
             return json_encode(["otvet" => "ok"]);
         } else {
             return json_encode(["otvet" => "user_not_found"]);
         }
+        //return "Авторизация";
     }
 }
-
