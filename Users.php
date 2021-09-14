@@ -71,4 +71,12 @@ class User
         }
         //return "Авторизация";
     }
+    // статический метод вывода данных пользователя
+    static function getUser($userID)
+    {
+        global $mysqli;
+        $result = $mysqli->query("SELECT `name`, `lastname`, `email`, `id` FROM `users` WHERE `id` = '$userID'");
+        $result = $result->fetch_assoc();
+        return json_encode($result);
+    }
 }
