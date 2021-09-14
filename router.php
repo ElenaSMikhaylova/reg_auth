@@ -13,6 +13,8 @@ if ($url[1] == "auth") {
     echo User::addUser($_POST['name'], $_POST['lastname'], $_POST['email'], $_POST['pass']);
 } else if ($url[1] == "authUser") {
     echo User::authUser($_POST['email'], $_POST['pass']);
+} else if ($url[1] == "getUser") {
+    echo User::getUser($_SESSION['id']);
 } else {
     $content = file_get_contents("pages/index.php");
 }
